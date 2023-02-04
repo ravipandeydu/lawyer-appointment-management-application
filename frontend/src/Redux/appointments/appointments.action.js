@@ -11,7 +11,7 @@ import {
 export const getAppointments = (token) => async (dispatch) => {
   dispatch({ type: GET_APPOINTMENTS_LOADING });
   try {
-    let response = await axios.get("http://localhost:8080/appointment/", {
+    let response = await axios.get("https://lawyer-appointment.onrender.com/appointment/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -26,7 +26,7 @@ export const getAppointments = (token) => async (dispatch) => {
 export const addAppointment = (token, appointment) => async (dispatch) => {
   dispatch({ type: POST_APPOINTMENTS_LOADING });
   try {
-    await axios.post("http://localhost:8080/appointment/create", appointment, {
+    await axios.post("https://lawyer-appointment.onrender.com/create", appointment, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

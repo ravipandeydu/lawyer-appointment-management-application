@@ -1,8 +1,5 @@
 import {
-  Box,
   Button,
-  Center,
-  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,7 +8,6 @@ import {
   ModalHeader,
   ModalOverlay,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,

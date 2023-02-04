@@ -43,7 +43,6 @@ const SingleLawyer = () => {
           </Heading>
           <Badge
             p={"5px 10px"}
-            // variant="solid"
             colorScheme="green"
             textTransform={"capitalize"}
             fontSize="md"
@@ -51,40 +50,25 @@ const SingleLawyer = () => {
           >
             {lawyer.speciality} Lawyer
           </Badge>
-          {/* <Tag textAlign={"left"} fontSize="md" width={"fit-content"}>
-            {lawyer.speciality} Lawyer
-          </Tag> */}
           <Flex pt={"15px"}>
             <Flex alignItems={"center"} textAlign={"left"}>
               <Heading fontSize={"lg"} mr={1} color="#f97316">
                 Availability:
               </Heading>
-              <Text fontSize={"lg"} fontWeight={500}>{lawyer.availability}</Text>
+              <Text fontSize={"lg"} fontWeight={500}>
+                {lawyer.availability}
+              </Text>
             </Flex>
             <Spacer />
             <Flex textAlign={"left"} alignItems={"center"}>
-            <Heading fontSize={"lg"} mr={1} color="#f97316">
-              Cost Per Appointment:{" "}
-            </Heading>
-            <Text fontSize={"lg"} fontWeight={500}>{lawyer.cost_per_appointment}</Text>
+              <Heading fontSize={"lg"} mr={1} color="#f97316">
+                Cost Per Appointment:{" "}
+              </Heading>
+              <Text fontSize={"lg"} fontWeight={500}>
+                {lawyer.cost_per_appointment}
+              </Text>
+            </Flex>
           </Flex>
-          </Flex>
-          {/* <Flex alignItems={"center"} textAlign={"left"}>
-            <Heading fontSize={"lg"} mr={1}>
-              Availability:
-            </Heading>
-            <Text fontSize={"lg"}>{lawyer.availability}</Text>
-          </Flex>
-          <Flex textAlign={"left"} alignItems={"center"}>
-            <Heading fontSize={"lg"} mr={1}>
-              Cost Per Appointment:{" "}
-            </Heading>
-            <Text fontSize={"lg"}>{lawyer.cost_per_appointment}</Text>
-          </Flex> */}
-          {/* <Heading>{lawyer.name}</Heading>
-          <Tag>{lawyer.speciality} lawyer</Tag>
-          <Text>Availability: {lawyer.availability}</Text>
-          <Text>Cost Per Appointment: {lawyer.cost_per_appointment}</Text> */}
           <Appointment lawyer={lawyer} />
           <AppointmentHistory lawyer={lawyer} />
         </Stack>

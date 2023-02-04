@@ -1,12 +1,8 @@
-// import { useToast } from "@chakra-ui/react";
-// import { useDispatch } from "react-redux";
 import { addAppointment } from "../Redux/appointments/appointments.action";
 import { bookAppointments, getLawyers } from "../Redux/lawyers/lawyers.actions";
 
 export function bookAppointment(id, lawyer, user, date, slot, toast, dispatch) {
   const token = localStorage.getItem("token");
-  // const toast = useToast();
-  // const dispatch = useDispatch();
   console.log("Clicked");
   if (lawyer.appointments[date]) {
     dispatch(

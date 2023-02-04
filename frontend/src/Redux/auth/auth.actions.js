@@ -9,16 +9,11 @@ import {
   AUTH_SIGNUP_SUCCESS,
 } from "./auth.types";
 
-const handleUser = (payload) => ({
-  type: AUTH_LOGIN_SUCCESS,
-  payload,
-});
-
 export const loginSuccess = (creds) => async (dispatch) => {
   dispatch({ type: AUTH_LOGIN_LOADING });
   try {
     await axios
-      .post("http://localhost:8080/user/login", creds)
+      .post("https://lawyer-appointment.onrender.com/user/login", creds)
       .then((data) => {
         console.log(data);
         if (data.data.error) {
@@ -37,7 +32,7 @@ export const signupSuccess = (creds) => async (dispatch) => {
   dispatch({ type: AUTH_SIGNUP_LOADING });
   try {
     await axios
-      .post("http://localhost:8080/user/signup", creds)
+      .post("https://lawyer-appointment.onrender.com/user/signup", creds)
       .then((data) => {
         console.log(data);
         if (data.data.error) {
@@ -50,10 +45,6 @@ export const signupSuccess = (creds) => async (dispatch) => {
   } catch (e) {
     dispatch({ type: AUTH_SIGNUP_ERROR, payload: "Server Error" });
   }
-};
-
-export const login = (creds) => (dispatch) => {
-  dispatch(handleUser(creds));
 };
 
 const handleLogout = () => ({

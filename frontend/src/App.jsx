@@ -7,9 +7,6 @@ import Home from "./Pages/Home";
 import PrivateRoute from "./Components/PrivateRoute";
 import SingleLawyer from "./Components/SingleLawyer";
 import MyAppointments from "./Components/MyAppointments";
-// import AllEvents from "./Pages/AllEvents";
-// import MyEvents from "./Pages/MyEvents";
-// import MyBookedEvents from "./Pages/MyBookedEvents";
 
 function App() {
   return (

@@ -16,16 +16,15 @@ import {
   Heading,
   useToast,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-// import { userData } from "../Redux/auth/auth.actions";
 import { useNavigate } from "react-router-dom";
 import { signupSuccess } from "../Redux/auth/auth.actions";
 
 const SignUp = () => {
   const toast = useToast();
-  const { loading, error, errormsg, successmsg } = useSelector(
+  const { loading } = useSelector(
     (state) => state.auth
   );
   const [password, setPassword] = useState("");
@@ -36,27 +35,15 @@ const SignUp = () => {
   function handleSignUp(e) {
     e.preventDefault();
     try {
-      dispatch(signupSuccess({ username, password })).then((r) => {
-        console.log(r);
-        if (!error) {
-          toast({
-            title: "SignUp Successful",
-            description: "You've successfully booked the appointment",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
-          navigate("/signin");
-        } else {
-          toast({
-            title: "Already Registered",
-            description: "You've successfully booked the appointment",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
-          navigate("/signin");
-        }
+      dispatch(signupSuccess({ username, password })).then(() => {
+        toast({
+          title: "SignUp Successful",
+          description: "You've successfully booked the appointment",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        navigate("/signin");
       });
     } catch (e) {
       console.log(e);
@@ -102,14 +89,6 @@ const SignUp = () => {
           )}
         </CardFooter>
       </Card>
-      {error ? (
-        <Alert status="error">
-          <AlertIcon />
-          <AlertTitle>{errormsg}</AlertTitle>
-        </Alert>
-      ) : (
-        ""
-      )}
     </Box>
   );
 };

@@ -17,11 +17,8 @@ import { logout } from "../Redux/auth/auth.actions";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  // const isAuth = useSelector((state) => state.auth.isAuth);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  // const user = useSelector((state) => state.auth.user).user;
   const user = JSON.parse(localStorage.getItem("user"));
 
   function handleLogout() {
@@ -29,7 +26,8 @@ const Navbar = () => {
   }
   return (
     <Flex
-      bg={useColorModeValue("red.200", "teal")}
+      bg={"teal"}
+      color={"white"}
       borderBottom="0.5px solid #b1b3b5"
       px={6}
       align="center"
@@ -61,7 +59,7 @@ const Navbar = () => {
           <Box px={6} py={2} fontWeight="600" fontSize={"18px"}>
             {user?.user?.username}
           </Box>
-          <Button px={6} py={2} onClick={handleLogout}>
+          <Button px={6} py={2} onClick={handleLogout} colorScheme={"red"}>
             Logout
           </Button>
           <Button onClick={toggleColorMode}>

@@ -11,20 +11,13 @@ import {
 export const getLawyers = (token) => async (dispatch) => {
   dispatch({ type: GET_LAWYERS_LOADING });
   try {
-    let response = await axios.get("http://localhost:8080/lawyer", {
+    let response = await axios.get("https://lawyer-appointment.onrender.com/lawyer", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    // let events = response.data.filter((event) => event.userId !== user._id);
-    // if (!gameType) {
     dispatch({ type: GET_LAWYERS_SUCCESS, payload: response.data });
     return response.data;
-    // } else {
-    //   let events = response.data.filter((event) => event.gameType === gameType);
-    //   dispatch({ type: GET_LAWYERS_SUCCESS, payload: events });
-    //   return response.data;
-    // }
   } catch (e) {
     dispatch({ type: GET_LAWYERS_ERROR });
   }
@@ -35,7 +28,7 @@ export const bookAppointments =
     dispatch({ type: PATCH_LAWYERS_LOADING });
     try {
       await axios.patch(
-        `http://localhost:8080/lawyer/edit/${lawyerId}`,
+        `https://lawyer-appointment.onrender.com/lawyer/edit/${lawyerId}`,
         lawyer,
         {
           headers: {

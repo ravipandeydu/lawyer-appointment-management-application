@@ -7,9 +7,6 @@ import {
   Divider,
   FormLabel,
   Input,
-  Alert,
-  AlertIcon,
-  AlertTitle,
   Heading,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
@@ -18,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../Redux/auth/auth.actions";
 
 const SignIn = () => {
-  const { loading, error, errormsg } = useSelector(
+  const { loading } = useSelector(
     (state) => state.auth
   );
   const [username, setUsername] = useState("");
@@ -73,14 +70,6 @@ const SignIn = () => {
           )}
         </CardFooter>
       </Card>
-      {error ? (
-        <Alert status="error">
-          <AlertIcon />
-          <AlertTitle>{errormsg}</AlertTitle>
-        </Alert>
-      ) : (
-        ""
-      )}
     </Box>
   );
 };
