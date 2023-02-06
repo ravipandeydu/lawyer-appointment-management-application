@@ -20,6 +20,7 @@ app.use(cors());
 app.use("/user", userRoutes);
 
 app.use("/lawyer", lawyerRoutes);
+
 app.use("/appointment", appointmentsRoutes);
 
 app.listen(8080, async () => {

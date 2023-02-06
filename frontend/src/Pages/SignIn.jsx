@@ -8,16 +8,19 @@ import {
   FormLabel,
   Input,
   Heading,
+  Alert,
+  AlertIcon,
+  Text,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../Redux/auth/auth.actions";
 
 const SignIn = () => {
-  const { loading } = useSelector(
-    (state) => state.auth
-  );
+  const toast = useToast();
+  const { loading, error, errormsg } = useSelector((state) => state.auth);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,6 +31,13 @@ const SignIn = () => {
     e.preventDefault();
     try {
       dispatch(loginSuccess({ username, password })).then(() => {
+        toast({
+          title: "SignIn Successful",
+          description: "You've successfully signed in",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
         navigate("/");
       });
     } catch (e) {
@@ -70,6 +80,20 @@ const SignIn = () => {
           )}
         </CardFooter>
       </Card>
+      <Text m={5} fontSize={16}>
+        Not registered? <Link to={"/signup"}>Sign Up</Link>
+      </Text>
+      {/* If error exists */}
+      {error ? (
+        <Box maxW={"lg"}>
+          <Alert status="error">
+            <AlertIcon />
+            {errormsg}
+          </Alert>
+        </Box>
+      ) : (
+        ""
+      )}
     </Box>
   );
 };

@@ -8,14 +8,18 @@ import {
   PATCH_LAWYERS_SUCCESS,
 } from "./lawyers.types";
 
+// Get all lawyers
 export const getLawyers = (token) => async (dispatch) => {
   dispatch({ type: GET_LAWYERS_LOADING });
   try {
-    let response = await axios.get("https://lawyer-appointment.onrender.com/lawyer", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    let response = await axios.get(
+      "https://lawyer-appointment.onrender.com/lawyer",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     dispatch({ type: GET_LAWYERS_SUCCESS, payload: response.data });
     return response.data;
   } catch (e) {
@@ -23,6 +27,25 @@ export const getLawyers = (token) => async (dispatch) => {
   }
 };
 
+// get all lawyers after first render
+export const getLawyersWithoutLoading = (token) => async (dispatch) => {
+  try {
+    let response = await axios.get(
+      "https://lawyer-appointment.onrender.com/lawyer",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    dispatch({ type: GET_LAWYERS_SUCCESS, payload: response.data });
+    return response.data;
+  } catch (e) {
+    dispatch({ type: GET_LAWYERS_ERROR });
+  }
+};
+
+// get add appointment in the lawyer appointments
 export const bookAppointments =
   (token, lawyerId, lawyer) => async (dispatch) => {
     dispatch({ type: PATCH_LAWYERS_LOADING });

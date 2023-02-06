@@ -1,30 +1,18 @@
 import {
-  Alert,
-  AlertIcon,
   Badge,
   Box,
-  Button,
   Flex,
   Heading,
-  HStack,
   Image,
   Spacer,
   Stack,
-  Tag,
   Text,
-  useToast,
 } from "@chakra-ui/react";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addAppointment } from "../Redux/appointments/appointments.action";
-import { bookAppointments, getLawyers } from "../Redux/lawyers/lawyers.actions";
-import { bookAppointment } from "../utils/bookAppointment";
-import { getDates } from "../utils/getDates";
-import { getSlots } from "../utils/getSlots";
-import Appointment from "./Appointment";
-import AppointmentHistory from "./AppointmentHistory";
-import AppointmentSlots from "./AppointmentSlots";
+import Appointment from "../Components/Appointment";
+import AppointmentHistory from "../Components/AppointmentHistory";
 
 const SingleLawyer = () => {
   const { id } = useParams();
@@ -35,7 +23,7 @@ const SingleLawyer = () => {
     <Box width={"80%"} margin="auto" my={10}>
       <Flex gap={"40px"}>
         <Box width={"50%"}>
-          <Image src={lawyer.img} alt={lawyer.name} />
+          <Image src={lawyer.img} alt={lawyer.name} width="100%" />
         </Box>
         <Stack textAlign={"left"}>
           <Heading textAlign={"left"} size="xl">

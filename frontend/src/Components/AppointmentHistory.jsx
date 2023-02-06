@@ -42,6 +42,7 @@ const AppointmentHistory = ({ lawyer }) => {
                   </Tr>
                 </Thead>
                 <Tbody>
+                  {/* mapping for the all appointments of a lawyer */}
                   {Object.keys(lawyer.appointments).map((appointment) => (
                     <Tr m={2}>
                       <Td>{appointment}</Td>

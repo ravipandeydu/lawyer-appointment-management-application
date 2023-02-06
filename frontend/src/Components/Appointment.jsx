@@ -20,7 +20,6 @@ const Appointment = ({ lawyer }) => {
   console.log(slots);
   const dispatch = useDispatch();
   const user = useSelector((store) => store.auth.user.user);
-  const loading = useSelector((store) => store.lawyers.loading);
   return (
     <Card w={"2xl"}>
       <CardBody>
@@ -30,54 +29,47 @@ const Appointment = ({ lawyer }) => {
         <Text textAlign="left">
           (To book an appointment, Click on any available slot)
         </Text>
+        {/* mapping for next three days */}
         {dates.map((date) => (
           <Box>
             {Object.keys(lawyer.appointments).includes(date) ? (
               <Box>
+                {/* If date exists in appointments list */}
                 <Text fontSize={"20px"} m={2} pt={5}>
                   {date}
                 </Text>
                 <Box borderTop={"0.5px solid gray"} pt={1}>
-                  {slots.map((el) =>
-                    loading ? (
-                      <Button
-                        isLoading
-                        loadingText="Loading"
-                        colorScheme="teal"
-                        variant="outline"
-                        spinnerPlacement="start"
-                      >
-                        Book
-                      </Button>
-                    ) : (
-                      <Button
-                        m={2}
-                        colorScheme={"green"}
-                        onClick={() =>
-                          bookAppointment(
-                            lawyer._id,
-                            lawyer,
-                            user,
-                            date,
-                            el,
-                            toast,
-                            dispatch
-                          )
-                        }
-                        disabled={lawyer.appointments[date]?.includes(el)}
-                      >
-                        {el}
-                      </Button>
-                    )
-                  )}
+                  {/* mapping for the daywise slots */}
+                  {slots.map((el) => (
+                    <Button
+                      m={2}
+                      colorScheme={"green"}
+                      onClick={() =>
+                        bookAppointment(
+                          lawyer._id,
+                          lawyer,
+                          user,
+                          date,
+                          el,
+                          toast,
+                          dispatch
+                        )
+                      }
+                      disabled={lawyer.appointments[date]?.includes(el)}
+                    >
+                      {el}
+                    </Button>
+                  ))}
                 </Box>
               </Box>
             ) : (
               <Box>
+                {/* If date doesn't exist in appointments list */}
                 <Text fontSize={"20px"} m={2} pt={5}>
                   {date}
                 </Text>
                 <Box borderTop={"0.5px solid gray"} pt={1}>
+                  {/* mapping for the daywise slots */}
                   {slots.map((el) => (
                     <Button
                       m={2}

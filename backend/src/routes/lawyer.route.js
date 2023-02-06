@@ -6,11 +6,13 @@ const { LawyerModel } = require("../models/Lawyer.model");
 
 const lawyerRoutes = Router();
 
+// To get all lawyers
 lawyerRoutes.get("/", authentication, async (req, res) => {
   const lawyers = await LawyerModel.find();
   res.send(lawyers);
 });
 
+// To add new lawyer
 lawyerRoutes.post("/create", async (req, res) => {
   const newlawyer = new LawyerModel(req.body);
   try {
@@ -22,6 +24,7 @@ lawyerRoutes.post("/create", async (req, res) => {
   }
 });
 
+// To edit lawyer
 lawyerRoutes.patch("/edit/:lawyerId", authentication, async (req, res) => {
   const { lawyerId } = req.params;
   const updatedlawyer = await LawyerModel.findOneAndUpdate(

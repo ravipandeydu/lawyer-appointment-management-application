@@ -1,9 +1,13 @@
 import { addAppointment } from "../Redux/appointments/appointments.action";
-import { bookAppointments, getLawyers } from "../Redux/lawyers/lawyers.actions";
+import {
+  bookAppointments,
+  getLawyers,
+  getLawyersWithoutLoading,
+} from "../Redux/lawyers/lawyers.actions";
 
 export function bookAppointment(id, lawyer, user, date, slot, toast, dispatch) {
   const token = localStorage.getItem("token");
-  console.log("Clicked");
+  //If date exists in lawyer appointments
   if (lawyer.appointments[date]) {
     dispatch(
       bookAppointments(token, id, {
@@ -29,9 +33,10 @@ export function bookAppointment(id, lawyer, user, date, slot, toast, dispatch) {
           time: slot,
         })
       );
-      dispatch(getLawyers(token));
+      dispatch(getLawyersWithoutLoading(token));
     });
   } else {
+    //If date exists in lawyer appointments
     dispatch(
       bookAppointments(token, id, {
         ...lawyer,
@@ -56,7 +61,7 @@ export function bookAppointment(id, lawyer, user, date, slot, toast, dispatch) {
           time: slot,
         })
       );
-      dispatch(getLawyers(token));
+      dispatch(getLawyersWithoutLoading(token));
     });
   }
 }

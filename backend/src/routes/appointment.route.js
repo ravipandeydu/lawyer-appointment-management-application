@@ -6,6 +6,7 @@ const { AppointmentModel } = require("../models/Appointment.model");
 
 const appointmentsRoutes = Router();
 
+// To get user appointments
 appointmentsRoutes.get("/", authentication, async (req, res) => {
   const { userId } = req.body;
   const appointments = await AppointmentModel.find({ userId }).populate(
@@ -14,6 +15,7 @@ appointmentsRoutes.get("/", authentication, async (req, res) => {
   res.send(appointments);
 });
 
+// To add new appointment
 appointmentsRoutes.post("/create", authentication, async (req, res) => {
   const newAppointment = new AppointmentModel(req.body);
   try {

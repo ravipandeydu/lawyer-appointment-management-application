@@ -9,6 +9,7 @@ import {
   AUTH_SIGNUP_SUCCESS,
 } from "./auth.types";
 
+// Login
 export const loginSuccess = (creds) => async (dispatch) => {
   dispatch({ type: AUTH_LOGIN_LOADING });
   try {
@@ -28,6 +29,7 @@ export const loginSuccess = (creds) => async (dispatch) => {
   }
 };
 
+// Sign Up
 export const signupSuccess = (creds) => async (dispatch) => {
   dispatch({ type: AUTH_SIGNUP_LOADING });
   try {
@@ -51,6 +53,7 @@ const handleLogout = () => ({
   type: AUTH_LOGOUT,
 });
 
+// Logout
 export const logout = () => (dispatch) => {
   dispatch(handleLogout());
 };

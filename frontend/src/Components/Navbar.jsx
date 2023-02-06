@@ -10,16 +10,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/auth/auth.actions";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const token = localStorage.getItem("token");
+  const token = useSelector((store) => store.auth.token);
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = useSelector((store) => store.auth.user);
 
   function handleLogout() {
     dispatch(logout());
@@ -56,6 +56,7 @@ const Navbar = () => {
       <Spacer />
       {token ? (
         <Flex gap={"10px"}>
+          {/* If user logged in */}
           <Box px={6} py={2} fontWeight="600" fontSize={"18px"}>
             {user?.user?.username}
           </Box>
@@ -68,6 +69,7 @@ const Navbar = () => {
         </Flex>
       ) : (
         <Flex>
+          {/* If user not logged in */}
           <Link to="/signin">
             <Text px={6} py={2}>
               Sign In

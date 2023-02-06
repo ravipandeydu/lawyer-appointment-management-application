@@ -10,6 +10,7 @@ import {
 let initialState = {
   loading: false,
   error: false,
+  patchLoading: false,
   data: [],
 };
 
@@ -40,20 +41,20 @@ export const lawyersReducer = (state = initialState, { type, payload }) => {
     case PATCH_LAWYERS_LOADING: {
       return {
         ...state,
-        loading: true,
+        patchLoading: true,
       };
     }
     case PATCH_LAWYERS_ERROR: {
       return {
         ...state,
-        loading: false,
+        patchLoading: false,
         error: true,
       };
     }
     case PATCH_LAWYERS_SUCCESS: {
       return {
         ...state,
-        loading: false,
+        patchLoading: false,
         error: false,
       };
     }

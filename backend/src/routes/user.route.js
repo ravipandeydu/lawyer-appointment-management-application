@@ -6,11 +6,13 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const userRoutes = Router();
 
+// To get all users
 userRoutes.get("/", async (req, res) => {
   const users = await userModel.find();
   res.send(users);
 });
 
+// To add new user
 userRoutes.post("/signup", async (req, res) => {
   let { username, password } = req.body;
   try {
@@ -34,6 +36,7 @@ userRoutes.post("/signup", async (req, res) => {
   }
 });
 
+// To login existing user
 userRoutes.post("/login", async (req, res) => {
   let { username, password } = req.body;
   let user = await userModel.findOne({ username });
