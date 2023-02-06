@@ -68,7 +68,7 @@ const Appointment = ({ lawyer }) => {
         {/* mapping for next three days */}
         {dates.map((date) => (
           <Box>
-            {Object.keys(lawyer.appointments).includes(date) ? (
+            {Object.keys(lawyer.appointments)?.includes(date) ? (
               <Box>
                 {/* If date exists in appointments list */}
                 <Text fontSize={"20px"} m={2} pt={5}>
@@ -159,31 +159,47 @@ const Appointment = ({ lawyer }) => {
                 </Text>
                 <Box borderTop={"0.5px solid gray"} pt={1}>
                   {/* mapping for the daywise slots */}
-                  {slots.map((el) => (
-                    <Tooltip
-                      hasArrow
-                      label={`Click to book the slot`}
-                      bg="green.600"
-                    >
-                      <Button
-                        m={2}
-                        colorScheme={"green"}
-                        onClick={() =>
-                          bookAppointment(
-                            lawyer._id,
-                            lawyer,
-                            user,
-                            date,
-                            el,
-                            toast,
-                            dispatch
-                          )
-                        }
+                  {slots.map((el) => {
+                    return bookedSlots.includes([date, el].join("-")) ? (
+                      <Tooltip
+                        hasArrow
+                        label={`Already have an appointment at this time (${el})`}
+                        bg="red.600"
                       >
-                        {el}
-                      </Button>
-                    </Tooltip>
-                  ))}
+                        <Button
+                          m={2}
+                          cursor={"not-allowed"}
+                          colorScheme={"yellow"}
+                        >
+                          Appointment Scheduled
+                        </Button>
+                      </Tooltip>
+                    ) : (
+                      <Tooltip
+                        hasArrow
+                        label={`Click to book the slot`}
+                        bg="green.600"
+                      >
+                        <Button
+                          m={2}
+                          colorScheme={"green"}
+                          onClick={() =>
+                            bookAppointment(
+                              lawyer._id,
+                              lawyer,
+                              user,
+                              date,
+                              el,
+                              toast,
+                              dispatch
+                            )
+                          }
+                        >
+                          {el}
+                        </Button>
+                      </Tooltip>
+                    );
+                  })}
                 </Box>
               </Box>
             )}

@@ -1,4 +1,7 @@
-import { addAppointment } from "../Redux/appointments/appointments.action";
+import {
+  addAppointment,
+  getAppointments,
+} from "../Redux/appointments/appointments.action";
 import {
   bookAppointments,
   getLawyers,
@@ -34,6 +37,7 @@ export function bookAppointment(id, lawyer, user, date, slot, toast, dispatch) {
         })
       );
       dispatch(getLawyersWithoutLoading(token));
+      dispatch(getAppointments(token));
     });
   } else {
     //If date exists in lawyer appointments
@@ -62,6 +66,7 @@ export function bookAppointment(id, lawyer, user, date, slot, toast, dispatch) {
         })
       );
       dispatch(getLawyersWithoutLoading(token));
+      dispatch(getAppointments(token));
     });
   }
 }
